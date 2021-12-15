@@ -1,3 +1,7 @@
+const playerInventory = []
+console.log(playerInventory)
+let inventory
+
 function newImage(url, left, bottom){
     let object = document.createElement('img')
     object.src = url
@@ -8,17 +12,32 @@ function newImage(url, left, bottom){
     return object
 }
 
-function newItem(url, left, bottom){
+function newItem(url, left, bottom, name){
     let item = newImage(url, left, bottom)
+    item.addEventListener("click", function() {
+        item.remove()
+        
+        aquirredInventory(url)
+    })
 }
 
+
+function aquirredInventory(url) {
+    let inventoryItem = document.createElement("img")
+    inventoryItem.src = url
+    inventory.appendChild(inventoryItem)
+}
+
+
+
 function newInventory(){
-    let inventory = document.createElement('div')
+    inventory = document.createElement('div')
+    inventory.setAttribute("id", "container")
     inventory.style.position = 'fixed'
-    inventory.style.bottom = '0px';
+    inventory.style.bottom = '0px'
     inventory.style.left = '0px'
     inventory.style.width = '100%'
-    inventory.style.height = '100px'
+    inventory.style.height = '75px'
     inventory.style.display = 'flex'
     inventory.style.flexDirection = 'row'
     inventory.style.alignItems = 'center'
@@ -26,16 +45,24 @@ function newInventory(){
     inventory.style.border = '2px solid black'
     inventory.style.backgroundColor = 'brown'
     document.body.append(inventory)
+    return inventory
 }
 
-newInventory()
-newImage('assets/green-character.gif', 100, 250)
-newImage('assets/tree.png', 200, 450)
-newImage('assets/pillar.png', 350, 250)
-newImage('assets/pine-tree.png', 450, 350)
-newImage('assets/crate.png', 150, 350)
-newImage('assets/well.png', 500, 575)
+// console.log(inventory)
 
-newItem('assets/sword.png', 500, 555)
-newItem('assets/shield.png', 165, 335)
-newItem('assets/staff.png', 600, 250)
+newInventory()
+newImage('assets/green-character.gif', 100, 150)
+newImage('assets/tree.png', 200, 350)
+newImage('assets/pillar.png', 350, 150)
+newImage('assets/pine-tree.png', 450, 250)
+newImage('assets/crate.png', 150, 250)
+newImage('assets/well.png', 500, 425)
+
+newItem('assets/sword.png', 500, 425, "sword")
+newItem('assets/shield.png', 165, 245, "shield")
+newItem('assets/staff.png', 600, 120, "staff")
+
+
+
+
+
